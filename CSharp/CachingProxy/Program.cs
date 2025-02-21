@@ -1,4 +1,5 @@
 ﻿using Cocona;
+using CachingProxy.Proxy;
 
 CoconaApp.Run(async (int port, string origin) =>
 {
