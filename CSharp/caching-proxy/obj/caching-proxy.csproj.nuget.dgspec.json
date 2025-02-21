@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/tgrx/Documents/Repositories/Projects/Caching-proxy/CSharp/caching-proxy/caching-proxy.csproj": {}
+    "/home/tgrx/Documents/Programming/Repositories/Projects/Caching-proxy/CSharp/caching-proxy/caching-proxy.csproj": {}
   },
   "projects": {
-    "/home/tgrx/Documents/Repositories/Projects/Caching-proxy/CSharp/caching-proxy/caching-proxy.csproj": {
+    "/home/tgrx/Documents/Programming/Repositories/Projects/Caching-proxy/CSharp/caching-proxy/caching-proxy.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/tgrx/Documents/Repositories/Projects/Caching-proxy/CSharp/caching-proxy/caching-proxy.csproj",
+        "projectUniqueName": "/home/tgrx/Documents/Programming/Repositories/Projects/Caching-proxy/CSharp/caching-proxy/caching-proxy.csproj",
         "projectName": "caching-proxy",
-        "projectPath": "/home/tgrx/Documents/Repositories/Projects/Caching-proxy/CSharp/caching-proxy/caching-proxy.csproj",
+        "projectPath": "/home/tgrx/Documents/Programming/Repositories/Projects/Caching-proxy/CSharp/caching-proxy/caching-proxy.csproj",
         "packagesPath": "/home/tgrx/.nuget/packages/",
-        "outputPath": "/home/tgrx/Documents/Repositories/Projects/Caching-proxy/CSharp/caching-proxy/obj/",
+        "outputPath": "/home/tgrx/Documents/Programming/Repositories/Projects/Caching-proxy/CSharp/caching-proxy/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/tgrx/.nuget/NuGet/NuGet.Config"
@@ -42,6 +42,12 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Cocona": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
