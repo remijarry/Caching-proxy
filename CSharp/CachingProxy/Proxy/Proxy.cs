@@ -1,4 +1,5 @@
 using System.Net;
+using CachingProxy.Caching;
 
 namespace CachingProxy.Proxy;
 /// <summary>
@@ -9,7 +10,8 @@ public class Proxy
   private const string PREFIX = "http://localhost";
   private readonly string _origin;
   private static readonly HttpClient _httpClient = new();
-  private readonly HttpListener _httpListener;
+  private readonly HttpListener _httpListener = new();
+  private readonly Cache _cache = new();
 
   /// <summary>
   /// Initializes a new instance of the <see cref="Proxy"/> class.
@@ -18,7 +20,6 @@ public class Proxy
   /// <param name="origin">The target origin to which requests will be forwarded.</param>
   public Proxy(int port, string origin)
   {
-    _httpListener = new HttpListener();
     _httpListener.Prefixes.Add($"{PREFIX}:{port}/");
     _origin = origin;
   }
@@ -60,6 +61,15 @@ public class Proxy
     var request = context.Request;
     string targetUrl = $"{_origin}{request.Url.PathAndQuery}";
 
+    if (_cache.HasKey(targetUrl))
+    {
+      Console.WriteLine("X-Cache: HIT");
+      Console.WriteLine(_cache.GetValue(targetUrl));
+      return;
+    }
+
+    Console.WriteLine("X-Cache: MISS");
+    Console.WriteLine("Updating Cache...");
     var forwardedRequest = new HttpRequestMessage(new HttpMethod(request.HttpMethod), targetUrl);
 
     CopyHeadersFrom(request, forwardedRequest);
@@ -71,7 +81,11 @@ public class Proxy
     try
     {
       string responseBody = await _httpClient.GetStringAsync(new Uri(targetUrl), token);
-      Console.WriteLine(responseBody);
+      _cache.AddEntry(targetUrl, responseBody);
+
+      var response = context.Response;
+
+      Console.WriteLine($"Cache updated for {targetUrl}");
     }
     catch (HttpRequestException e)
     {
