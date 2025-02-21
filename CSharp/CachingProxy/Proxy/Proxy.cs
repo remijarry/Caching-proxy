@@ -1,6 +1,9 @@
 using System.Net;
-using System.Text;
 
+namespace CachingProxy.Proxy;
+/// <summary>
+/// A simple HTTP proxy that listens for incoming HTTP requests and forwards them to a specified origin.
+/// </summary>
 public class Proxy
 {
   private const string PREFIX = "http://localhost";
@@ -8,6 +11,11 @@ public class Proxy
   private static readonly HttpClient _httpClient = new();
   private readonly HttpListener _httpListener;
 
+  /// <summary>
+  /// Initializes a new instance of the <see cref="Proxy"/> class.
+  /// </summary>
+  /// <param name="port">The port on which the proxy will listen.</param>
+  /// <param name="origin">The target origin to which requests will be forwarded.</param>
   public Proxy(int port, string origin)
   {
     _httpListener = new HttpListener();
@@ -15,6 +23,10 @@ public class Proxy
     _origin = origin;
   }
 
+  /// <summary>
+  /// Starts the proxy server and begins listening for incoming HTTP requests.
+  /// </summary>
+  /// <param name="token">A cancellation token to stop the proxy server.</param>
   public async Task Start(CancellationToken token = default)
   {
     try
@@ -38,6 +50,11 @@ public class Proxy
     }
   }
 
+  /// <summary>
+  /// Handles an incoming HTTP request and forwards it to the target origin.
+  /// </summary>
+  /// <param name="context">The HTTP request context.</param>
+  /// <param name="token">A cancellation token to cancel the request.</param>
   private async Task HandleClient(HttpListenerContext context, CancellationToken token)
   {
     var request = context.Request;
@@ -62,46 +79,21 @@ public class Proxy
       Console.WriteLine("Message: {0} ", e.Message);
     }
 
-    // foreach (string header in request.Headers)
-    // {
-    //     if (!WebHeaderCollection.IsRestricted(header)) // Avoid restricted headers
-    //     {
-    //         forwardedRequest.Headers.TryAddWithoutValidation(header, request.Headers[header]);
-    //     }
-    // }
-
-    // // Copy body if it's a POST/PUT request
-    // if (request.HasEntityBody)
-    // {
-    //     using var reader = new StreamReader(request.InputStream, request.ContentEncoding);
-    //     string body = await reader.ReadToEndAsync();
-    //     forwardedRequest.Content = new StringContent(body, Encoding.UTF8, request.ContentType);
-    // }
-
-    // // Send request and get response
-    // using HttpResponseMessage response = await httpClient.SendAsync(forwardedRequest);
-
-    // // Copy response to client
-    // context.Response.StatusCode = (int)response.StatusCode;
-    // foreach (var header in response.Headers)
-    // {
-    //     context.Response.Headers[header.Key] = string.Join(", ", header.Value);
-    // }
-
-    // // Copy response body
-    // byte[] responseBody = await response.Content.ReadAsByteArrayAsync();
-    // context.Response.OutputStream.Write(responseBody, 0, responseBody.Length);
-    // context.Response.OutputStream.Close();
 
   }
 
-  private static void CopyHeadersFrom(HttpListenerRequest fromRequest, HttpRequestMessage ToForwardedRequest)
+  /// <summary>
+  /// Copies headers from the original HTTP request to the forwarded request.
+  /// </summary>
+  /// <param name="fromRequest">The original incoming HTTP request.</param>
+  /// <param name="toForwardedRequest">The HTTP request to be forwarded.</param>
+  private static void CopyHeadersFrom(HttpListenerRequest fromRequest, HttpRequestMessage toForwardedRequest)
   {
     foreach (string header in fromRequest.Headers)
     {
       if (!WebHeaderCollection.IsRestricted(header)) // Avoid restricted headers
       {
-        ToForwardedRequest.Headers.TryAddWithoutValidation(header, fromRequest.Headers[header]);
+        toForwardedRequest.Headers.TryAddWithoutValidation(header, fromRequest.Headers[header]);
       }
     }
   }
