@@ -80,10 +80,17 @@ public class Proxy
 
     try
     {
-      string responseBody = await _httpClient.GetStringAsync(new Uri(targetUrl), token);
-      _cache.AddEntry(targetUrl, responseBody);
+      // string responseBody = await _httpClient.GetStringAsync(new Uri(targetUrl), token);
+      // _cache.AddEntry(targetUrl, responseBody);
 
+      var test = await _httpClient.SendAsync(forwardedRequest, token);
       var response = context.Response;
+      foreach (var header in test.Headers)
+      {
+        // response.Headers.Add()
+      }
+
+
 
       Console.WriteLine($"Cache updated for {targetUrl}");
     }
