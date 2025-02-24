@@ -1,11 +1,12 @@
 using System.Collections.Concurrent;
+using caching_proxy.Cache.Models;
 using CachingProxy.Exceptions;
 
 namespace CachingProxy.Caching;
 
 public class Cache
 {
-  private ConcurrentDictionary<string, string> _dictionary = new();
+  private ConcurrentDictionary<string, CachedItem> _dictionary = new();
 
   internal bool HasKey(string targetUrl)
   {
@@ -17,25 +18,24 @@ public class Cache
     return _dictionary.ContainsKey(targetUrl);
   }
 
-  internal string GetValue(string key)
+  internal CachedItem? GetValue(string key)
   {
     if (!HasKey(key))
     {
-      return string.Empty;
+      return null;
     }
 
     return _dictionary[key];
   }
 
-
-  internal bool AddEntry(string key, string value)
+  internal bool AddEntry(string key, CachedItem value)
   {
     if (HasKey(key))
     {
       throw new KeyAlreadyExistsException();
     }
 
-    if (string.IsNullOrEmpty(key) || string.IsNullOrEmpty(value))
+    if (string.IsNullOrEmpty(key) || value == null)
     {
       throw new ArgumentException("key or value cannot be null or an empty string.");
     }

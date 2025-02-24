@@ -1,0 +1,84 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\remi.jarry\\OneDrive - EROAD\\Documents\\Entelect\\Sandbox\\Caching-proxy\\CSharp\\CachingProxy\\caching-proxy.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\remi.jarry\\OneDrive - EROAD\\Documents\\Entelect\\Sandbox\\Caching-proxy\\CSharp\\CachingProxy\\caching-proxy.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\remi.jarry\\OneDrive - EROAD\\Documents\\Entelect\\Sandbox\\Caching-proxy\\CSharp\\CachingProxy\\caching-proxy.csproj",
+        "projectName": "caching-proxy",
+        "projectPath": "C:\\Users\\remi.jarry\\OneDrive - EROAD\\Documents\\Entelect\\Sandbox\\Caching-proxy\\CSharp\\CachingProxy\\caching-proxy.csproj",
+        "packagesPath": "C:\\Users\\remi.jarry\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\remi.jarry\\OneDrive - EROAD\\Documents\\Entelect\\Sandbox\\Caching-proxy\\CSharp\\CachingProxy\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\remi.jarry\\OneDrive - EROAD\\Documents\\NuGet.Config",
+          "C:\\Users\\remi.jarry\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://pkgs.dev.azure.com/coretex-dev-ops/6ad93884-163b-4c42-9565-8029d4893c1e/_packaging/360.Common%40Local/nuget/v3/index.json": {},
+          "https://pkgs.dev.azure.com/coretex-dev-ops/6ad93884-163b-4c42-9565-8029d4893c1e/_packaging/360.Common/nuget/v3/index.json": {},
+          "https://pkgs.dev.azure.com/coretex-dev-ops/_packaging/coretex-360-libs%40Release/nuget/v3/index.json": {},
+          "https://pkgs.dev.azure.com/coretex-dev-ops/_packaging/coretex-360-libs/nuget/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Cocona": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
